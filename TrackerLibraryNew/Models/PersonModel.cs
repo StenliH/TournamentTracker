@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrackerLibraryNew.Models
 {
-	class PersonModel
+	public class PersonModel
 	{
 		/// <summary>
 		/// The first name of the person.

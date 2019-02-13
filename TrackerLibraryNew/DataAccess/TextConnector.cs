@@ -7,7 +7,7 @@ using TrackerLibraryNew.Models;
 
 namespace TrackerLibraryNew.DataAccess
 {
-	class TextConnector
+	public class TextConnector
 	{
 		// TODO - Wire up the CreatePrize for text files.
 		/// <summary>

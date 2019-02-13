@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TrackerLibraryNew.Models
 {
-	class TournamentModel
+	public class TournamentModel
 	{
 		/// <summary>
 		/// Name of the tournament.

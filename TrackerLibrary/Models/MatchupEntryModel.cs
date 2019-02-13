@@ -1,4 +1,10 @@
-﻿namespace TrackerLibrary.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TrackerLibrary.Models
 {
 	public class MatchupEntryModel
 	{
@@ -17,6 +23,5 @@
 		/// from as the winner.
 		/// </summary>
 		public MatchupModel ParentMatchup { get; set; }
-
 	}
 }

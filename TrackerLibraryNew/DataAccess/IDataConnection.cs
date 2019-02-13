@@ -8,7 +8,7 @@ using TrackerLibraryNew.Models;
 
 namespace TrackerLibraryNew.DataAccess
 {
-	interface IDataConnection
+	public interface IDataConnection
 	{
 		PrizeModel CreatePrize(PrizeModel model);
 

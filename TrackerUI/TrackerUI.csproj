@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -117,7 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TrackerLibrary\TrackerLibrary.csproj">
-      <Project>{f7bda1d0-9961-4556-a79c-ad8e6564fe7f}</Project>
+      <Project>{ebb978fe-2b3c-45d3-a640-e464cd1cea35}</Project>
       <Name>TrackerLibrary</Name>
     </ProjectReference>
   </ItemGroup>

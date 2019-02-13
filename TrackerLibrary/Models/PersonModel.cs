@@ -1,4 +1,10 @@
-﻿namespace TrackerLibrary.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TrackerLibrary.Models
 {
 	public class PersonModel
 	{
@@ -21,6 +27,5 @@
 		/// The phone number of the person.
 		/// </summary>
 		public string CellphoneNumber { get; set; }
-
 	}
 }
