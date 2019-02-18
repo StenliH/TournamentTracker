@@ -26,18 +26,6 @@ namespace TrackerLibrary
 					break;
 			}
 
-			//if (db == DatabaseType.Sql)
-			//{
-			//	// TODO - Set up the SQL Connector properly
-			//	SqlConnector sql = new SqlConnector();
-			//	Connections = (IDataConnection)sql;
-			//}
-			//else if (db == DatabaseType.TextFile)
-			//{
-			//	// TODO - Create the Text Connection
-			//	TextConnector text = new TextConnector();
-			//	Connections = (IDataConnection)text;
-			//}
 		}
 
 		public static string CnnString(string name)
