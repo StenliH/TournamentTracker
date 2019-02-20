@@ -115,18 +115,18 @@ namespace TrackerUI
 		}
 
 
-		//private bool ValidateCreateTeamForm()
-		//{
-		//	bool output = true;
+		private bool ValidateCreateTeamForm()
+		{
+			bool output = true;
 
-		//	if (teamNameValue.Text.Length == 0)
-		//		output = false;
+			if (teamNameValue.Text.Length == 0)
+				output = false;
 
-		//	if (selectedTeamMembers.Count == 0)
-		//		output = false;
+			if (selectedTeamMembers.Count == 0)
+				output = false;
 
-		//	return output;
-		//}
+			return output;
+		}
 
 		private void addMemberButton_Click(object sender, EventArgs e)
 		{
@@ -158,20 +158,25 @@ namespace TrackerUI
 		{
 			// TODO - finish creating team process
 
-			//if (ValidateCreateTeamForm())
-			//{
-			//	TeamModel team = new TeamModel();
+			if (ValidateCreateTeamForm())
+			{
+				TeamModel team = new TeamModel();
 
-			//	team.TeamName = teamNameValue.Text;
-			//	team.TeamMembers = selectedTeamMembers.ToList();
+				team.TeamName = teamNameValue.Text;
+				team.TeamMembers = selectedTeamMembers.ToList();
 
-			//	GlobalConfig.Connection.CreateTeam();
+				team = GlobalConfig.Connection.CreateTeam(team);
+				GlobalConfig.Connection.AssignPeopleToTeam(team);
 
-			//	teamNameValue.Text = "";
-			//	selectedTeamMembers.Clear();
+				teamNameValue.Text = "";
+				selectedTeamMembers.Clear();
 
-			//	WireUpLists();
-			//}
+				WireUpLists();
+			}
+			else
+			{
+				MessageBox.Show("Type a team name and choose at least one member.");
+			}
 		}
 	}
 }
