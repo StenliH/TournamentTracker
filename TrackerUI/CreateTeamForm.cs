@@ -57,7 +57,7 @@ namespace TrackerUI
 			});
 		}
 
-		public void WireUpLists()
+		private void WireUpLists()
 		{
 			addMemberDropDown.DataSource = null;
 
@@ -165,13 +165,17 @@ namespace TrackerUI
 				team.TeamName = teamNameValue.Text;
 				team.TeamMembers = selectedTeamMembers.ToList();
 
-				team = GlobalConfig.Connection.CreateTeam(team);
-				GlobalConfig.Connection.AssignPeopleToTeam(team);
+				GlobalConfig.Connection.CreateTeam(team);
 
+
+				// If Create Team Form is supposed to close after creation of a new team
+				// following code can be removed
+				// from here...
 				teamNameValue.Text = "";
 				selectedTeamMembers.Clear();
 
 				WireUpLists();
+				// ... down to here
 			}
 			else
 			{

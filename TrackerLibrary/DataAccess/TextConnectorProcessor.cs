@@ -67,6 +67,35 @@ namespace TrackerLibrary.DataAccess.TextHelpers
 			return output;
 		}
 
+		public static List<TeamModel> ConvertToTeamModels(this List<string> lines, string peopleFileName)
+		{
+			List<TeamModel> output = new List<TeamModel>();
+
+			// structure of TeamModel in TeamsFile:
+			// Id, TeamName, PersonId|PersonId|..|..|....
+
+			foreach (string line in lines)
+			{
+				string[] cols = line.Split(',');
+
+				TeamModel t = new TeamModel();
+				List<PersonModel> people = peopleFileName.FullFilePath().LoadFile().ConvertToPersonModels();
+
+				t.Id = int.Parse(cols[0]);
+				t.TeamName = cols[1];
+				string[] PersonIds = cols[2].Split('|');
+
+				foreach (string id in PersonIds)
+				{
+					t.TeamMembers.Add(people.Where(x => x.Id == int.Parse(id)).First());
+				}
+
+				output.Add(t);
+			}
+
+			return output;
+		}
+
 		public static void SaveToFile(this List<PersonModel> persons, string fileName)
 		{
 			List<string> lines = new List<string>();
@@ -79,13 +108,33 @@ namespace TrackerLibrary.DataAccess.TextHelpers
 			File.WriteAllLines(fileName.FullFilePath(), lines);
 		}
 
-		public static void SaveToFile(this List<PrizeModel> models, string fileName)
+		public static void SaveToFile(this List<PrizeModel> prizes, string fileName)
 		{
 			List<string> lines = new List<string>();
 
-			foreach (PrizeModel p in models)
+			foreach (PrizeModel p in prizes)
 			{
 				lines.Add($"{ p.Id },{ p.PlaceNumber },{ p.PlaceName },{ p.PrizeAmount },{ p.PrizePercentage }");
+			}
+
+			File.WriteAllLines(fileName.FullFilePath(), lines);
+		}
+
+		public static void SaveToFile(this List<TeamModel> teams, string fileName)
+		{
+			List<string> lines = new List<string>();
+
+			foreach (TeamModel t in teams)
+			{
+				string teamMembers = "";
+
+				foreach (PersonModel p in t.TeamMembers)
+				{
+					teamMembers += $"{ p.Id }|";
+				}
+				teamMembers = teamMembers.Remove(teamMembers.Length - 1);
+
+				lines.Add($"{ t.Id },{ t.TeamName },{ teamMembers }");
 			}
 
 			File.WriteAllLines(fileName.FullFilePath(), lines);
