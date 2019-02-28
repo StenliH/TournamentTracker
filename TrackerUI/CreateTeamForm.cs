@@ -16,9 +16,11 @@ namespace TrackerUI
 	{
 		private List<PersonModel> availableTeamMembers = GlobalConfig.Connection.GetPerson_All();	// loading data from database or text file
 		private List<PersonModel> selectedTeamMembers = new List<PersonModel>();
+		ITeamRequester whoNeedsNewTeam;
 
-		public CreateTeamForm()
+		public CreateTeamForm(ITeamRequester caller)
 		{
+			this.whoNeedsNewTeam = caller;
 			InitializeComponent();
 
 			//Test_CreateSampleData();
@@ -156,8 +158,6 @@ namespace TrackerUI
 
 		private void createTeamButton_Click(object sender, EventArgs e)
 		{
-			// TODO - finish creating team process
-
 			if (ValidateCreateTeamForm())
 			{
 				TeamModel team = new TeamModel();
@@ -166,16 +166,9 @@ namespace TrackerUI
 				team.TeamMembers = selectedTeamMembers.ToList();
 
 				GlobalConfig.Connection.CreateTeam(team);
+				whoNeedsNewTeam.GiveTeam(team);
 
-
-				// If Create Team Form is supposed to close after creation of a new team
-				// following code can be removed
-				// from here...
-				teamNameValue.Text = "";
-				selectedTeamMembers.Clear();
-
-				WireUpLists();
-				// ... down to here
+				this.Close();
 			}
 			else
 			{
