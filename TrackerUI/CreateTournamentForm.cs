@@ -125,6 +125,7 @@ namespace TrackerUI
 				t.EnteredTeams = selectedTeams;
 				t.Prizes = selectedPrizes;
 				// TODO - t.Round
+				TournamentLogic.CreateRounds(t);
 
 				GlobalConfig.Connection.CreateTournament(t);
 
