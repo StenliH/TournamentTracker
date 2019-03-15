@@ -124,7 +124,6 @@ namespace TrackerUI
 				t.EntryFee = decimal.Parse(entryFeeValue.Text);
 				t.EnteredTeams = selectedTeams;
 				t.Prizes = selectedPrizes;
-				// TODO - t.Round
 				TournamentLogic.CreateRounds(t);
 
 				GlobalConfig.Connection.CreateTournament(t);
